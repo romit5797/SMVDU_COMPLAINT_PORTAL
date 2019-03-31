@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "76971375302",
+    "firebase_url": "https://smvdu-complaint-portal.firebaseio.com",
+    "project_id": "smvdu-complaint-portal",
+    "storage_bucket": "smvdu-complaint-portal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76971375302:android:3a126ff2dad96c06",
+        "android_client_info": {
+          "package_name": "com.smvdu.user.smvducomplaintportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76971375302-lk1k228o44jepkvg3ikf0kit2rmj3m58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoNHj2U5mj0jbOoWbGF6kzxJGPjxw9hgg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
