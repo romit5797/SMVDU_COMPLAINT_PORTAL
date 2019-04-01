@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="126dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="#800000"
         android:orientation="vertical"
@@ -37,7 +37,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -48,7 +48,7 @@
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="8dp"

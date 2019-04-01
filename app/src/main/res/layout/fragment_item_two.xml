@@ -67,19 +67,16 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="fill_parent"
-        android:layout_height="464dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lodge"
-        app:layout_constraintVertical_bias="0.088">
+        app:layout_constraintTop_toBottomOf="@+id/lodge">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -138,137 +135,6 @@
 
         </LinearLayout>
 
-
-        <!--   <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="320dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="132dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/comp" />
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="172dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:ems="10"
-            android:hint="Enter your name"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/comp" />
-
-
-        <EditText
-            android:id="@+id/etContact"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="236dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:ems="10"
-            android:hint="Enter your contact details"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
-
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="320dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="260dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/comp" />
-
-        <EditText
-            android:id="@+id/etRoom"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="320dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:ems="10"
-            android:hint="Enter your room number"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
-
-        <EditText
-            android:id="@+id/etBlock"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="364dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:ems="10"
-            android:hint="Enter your block"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
-
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
-            android:text="SUBMIT"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/comp" />
-
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
-
-        <EditText
-            android:id="@+id/editText3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        -->
 
     </ScrollView>
 

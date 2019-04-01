@@ -8,50 +8,50 @@
     android:layout_gravity="center"
     tools:context=".MainActivity">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#800000"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="126dp"
-            android:layout_centerHorizontal="true"
-            android:background="#800000"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="69dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/smvdulogo" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="SHRI MATA VAISHNO DEVI UNIVERSITY"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="69dp"
-                android:gravity="center"
-                app:srcCompat="@drawable/smvdulogo" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="COMPLAINT PORTAL"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="SHRI MATA VAISHNO DEVI UNIVERSITY"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="COMPLAINT PORTAL"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-
-        </LinearLayout>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/etUserName"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -69,7 +69,7 @@
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/etUserName"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -120,7 +120,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="47dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="36dp"
