@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".FourthActivity"></activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -25,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".SixthActivity" />
         <activity android:name=".FifthActivity" />
         <activity android:name=".ThirdActivity" />

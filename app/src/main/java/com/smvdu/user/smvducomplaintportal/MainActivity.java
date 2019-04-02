@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+    public void OnForgot(View view) {
+
+        Intent intent = new Intent(MainActivity.this, FourthActivity.class);
+        startActivity(intent);
+    }
+
 
     public void OnLogin(View view) {
 
