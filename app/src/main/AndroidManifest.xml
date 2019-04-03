@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FourthActivity"></activity>
+        <activity android:name=".EighthActivity"></activity>
+        <activity android:name=".SeventhActivity" />
+        <activity android:name=".FourthActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

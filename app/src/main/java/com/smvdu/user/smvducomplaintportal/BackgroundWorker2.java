@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -34,6 +35,7 @@ public class BackgroundWorker2 extends AsyncTask<String,Void,String> {
             try {
                 String username = params[1];
                 String password = params[2];
+                String category = params[3];
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -42,7 +44,8 @@ public class BackgroundWorker2 extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"
-                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8")+"&"
+                        +URLEncoder.encode("category","UTF-8")+"="+URLEncoder.encode(category,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -78,21 +81,22 @@ public class BackgroundWorker2 extends AsyncTask<String,Void,String> {
         progress.setProgress(0);
         progress.show();
     }
-
     @Override
     protected void onPostExecute(String result) {
         progress.hide();
-        if(result.equalsIgnoreCase("success")){
-
-            Intent mainIntent = new Intent(context, SecondActivity.class);
-            context.startActivity(mainIntent);
-
-
-        }
-        else{
-
+        if(result.equalsIgnoreCase("notsuccess")){
             alertDialog.setMessage(result);
             alertDialog.show();
+        }
+        else{
+            String one=result;
+            Intent mainIntent = new Intent(context, SeventhActivity.class);
+            Bundle bundle = new Bundle();
+//Add your data to bundle
+            bundle.putString("stuff",one);
+            mainIntent.putExtras(bundle);
+            context.startActivity(mainIntent);
+
         }
 
 

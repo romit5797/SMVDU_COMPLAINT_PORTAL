@@ -1,31 +1,20 @@
 package com.smvdu.user.smvducomplaintportal;
 
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -51,15 +40,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class ItemThreeFragment extends Fragment {
+public class ItemThreeFragment2 extends Fragment {
 
     String strtext;
+    String ServerURL = "http://learningphp1234.000webhostapp.com/android/changestatus.php" ;
+
     //int length;
     TableLayout stk;
     ScrollView scrollView;
+
 
     //String heroes5[] = new String[100];
     //String heroes4[] = new String[100];
@@ -69,8 +60,8 @@ public class ItemThreeFragment extends Fragment {
    // String[] count= {"1","2","3","4","5"};
 
 
-    public static ItemThreeFragment newInstance() {
-        ItemThreeFragment fragment = new ItemThreeFragment();
+    public static ItemThreeFragment2 newInstance() {
+        ItemThreeFragment2 fragment = new ItemThreeFragment2();
         return fragment;
     }
 
@@ -84,15 +75,14 @@ public class ItemThreeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_item_three, container, false);
-        Bundle b3 = getArguments();
-        strtext = b3.getString("SearchValue");
+        View view = inflater.inflate(R.layout.fragment_item_three2, container, false);
 
         stk = (TableLayout) view.findViewById(R.id.table);
         scrollView = (ScrollView) view.findViewById(R.id.scrollView1);
+        Bundle b3 = getArguments();
+        strtext = b3.getString("SearchValue");
 
-
-        getJSON("http://learningphp1234.000webhostapp.com/android/retrieve.php?email="+strtext);
+        getJSON("http://learningphp1234.000webhostapp.com/android/retrieve2.php?Category="+strtext);
 
                 return view;
     }
@@ -202,7 +192,7 @@ public class ItemThreeFragment extends Fragment {
         tv0.setTextColor(Color.WHITE);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(getActivity());
-        tv1.setText(" Category ");
+        tv1.setText("Category ");
         tv1.setTextColor(Color.WHITE);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(getActivity());
@@ -224,6 +214,16 @@ public class ItemThreeFragment extends Fragment {
         tv5.setTextColor(Color.WHITE);
         tv5.setGravity(Gravity.CENTER);
         tbrow0.addView(tv5);
+        TextView tv6 = new TextView(getActivity());
+        tv6.setText(" Change Status ");
+        tv6.setTextColor(Color.WHITE);
+        tv6.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv6);
+        TextView tv7 = new TextView(getActivity());
+        tv7.setText(" Options ");
+        tv7.setTextColor(Color.WHITE);
+        tv7.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv7);
 
         stk.addView(tbrow0);
 
@@ -273,11 +273,121 @@ public class ItemThreeFragment extends Fragment {
             t6v.setGravity(Gravity.CENTER);
             t6v.setMaxWidth(10);
             tbrow.addView(t6v);
+
+            final Spinner spinner = new Spinner(getActivity());
+            spinner.setLayoutParams(new LayoutParams(0,
+                    LayoutParams.WRAP_CONTENT, 1));
+
+            List<String> categories = new ArrayList<>();
+            categories.add(0, "..Select..");
+            categories.add("Resolved");
+            categories.add("Pending");
+
+            //Style and populate the spinner
+            ArrayAdapter<String> dataAdapter;
+            dataAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, categories);
+
+            //Dropdown layout style
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            //attaching data adapter to spinner
+            spinner.setAdapter(dataAdapter);
+
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    if (parent.getItemAtPosition(position).equals("..Select..")) {
+                        //do nothing
+                    } else {
+                        //on selecting a spinner item
+                        String item = parent.getItemAtPosition(position).toString();
+
+                        //show selected spinner item
+                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
+
+                        //anything else you want to do on item selection do here
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                    // TODO Auto-generated method stub
+                }
+            });
+            tbrow.addView(spinner);
+
+
+            Button btn = new Button(getActivity());
+            btn.setText("UPDATE");
+            btn.setId(i);
+            btn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                   String TempCNO= cno;
+                    String TempStatus = spinner.getSelectedItem().toString();
+                    InsertData(TempCNO,TempStatus);
+                }
+            });
+            tbrow.addView(btn);
+
+
             stk.addView(tbrow);
 
 
         }
 
+    }
+    public void InsertData(final String c_no,final String status){
+
+        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... params) {
+
+                String CNOHolder = c_no;
+                String StatusHolder = status;
+
+
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+                nameValuePairs.add(new BasicNameValuePair("c_no", CNOHolder));
+                nameValuePairs.add(new BasicNameValuePair("status", StatusHolder));
+                try {
+                    HttpClient httpClient = new DefaultHttpClient();
+
+                    HttpPost httpPost = new HttpPost(ServerURL);
+
+                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                    HttpResponse httpResponse = httpClient.execute(httpPost);
+
+                    HttpEntity httpEntity = httpResponse.getEntity();
+
+
+                } catch (ClientProtocolException e) {
+
+                } catch (IOException e) {
+
+                }
+                return "Data Inserted Successfully";
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+
+                super.onPostExecute(result);
+
+                Toast.makeText(getActivity(), "Status updated!", Toast.LENGTH_LONG).show();
+
+            }
+        }
+
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
+
+        sendPostReqAsyncTask.execute(c_no,status);
     }
 
     @Override

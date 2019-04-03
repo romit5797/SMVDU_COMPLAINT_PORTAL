@@ -35,7 +35,7 @@ public class ItemTwoFragment extends Fragment {
 
     private Spinner spinner;
     private Spinner spinner1;
-    String strtext;
+    String strtext="zxc";
     private EditText userName, userContact, userRoom,userBlock,userDetails;
     private Button Submit;
 
@@ -57,8 +57,6 @@ public class ItemTwoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_item_two, container, false);
 
-        Bundle b3 = getArguments();
-        strtext = b3.getString("SearchValue");
 
         userName = (EditText) view.findViewById(R.id.etName);
         userContact = (EditText) view.findViewById(R.id.etContact);
@@ -72,7 +70,7 @@ public class ItemTwoFragment extends Fragment {
         categories.add(0, "Choose Category");
         categories.add("Electricity");
         categories.add("Internet");
-        categories.add("Pencil");
+        categories.add("Other");
         categories.add("Eraser");
         categories.add("Bag");
         categories.add("Pen");
