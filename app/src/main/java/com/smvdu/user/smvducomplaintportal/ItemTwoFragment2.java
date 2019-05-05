@@ -1,5 +1,6 @@
 package com.smvdu.user.smvducomplaintportal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -237,7 +238,7 @@ public class ItemTwoFragment2 extends Fragment {
         tbrow0.setLayoutParams(tableRowParams);
 
         TextView tv0 = new TextView(getActivity());
-        tv0.setText(" ********Serial_Number********** ");
+        tv0.setText(" S.No ");
         tv0.setTextColor(Color.WHITE);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(getActivity());
@@ -264,15 +265,11 @@ public class ItemTwoFragment2 extends Fragment {
         tv5.setGravity(Gravity.CENTER);
         tbrow0.addView(tv5);
         TextView tv6 = new TextView(getActivity());
-        tv6.setText(" Change Status ");
+        tv6.setText(" Options ");
         tv6.setTextColor(Color.WHITE);
         tv6.setGravity(Gravity.CENTER);
         tbrow0.addView(tv6);
-        TextView tv7 = new TextView(getActivity());
-        tv7.setText(" Options ");
-        tv7.setTextColor(Color.WHITE);
-        tv7.setGravity(Gravity.CENTER);
-        tbrow0.addView(tv7);
+
 
         stk.addView(tbrow0);
 
@@ -283,7 +280,7 @@ public class ItemTwoFragment2 extends Fragment {
             TextView t1v = new TextView(getActivity());
             t1v.setText(Integer.toString(i+1));
             t1v.setTextColor(Color.WHITE);
-            t1v.setGravity(Gravity.RIGHT);
+            t1v.setGravity(Gravity.CENTER);
             t1v.setMaxWidth(10);
             tbrow.addView(t1v);
 
@@ -323,51 +320,6 @@ public class ItemTwoFragment2 extends Fragment {
             t6v.setMaxWidth(10);
             tbrow.addView(t6v);
 
-            final Spinner spinner = new Spinner(getActivity());
-            spinner.setLayoutParams(new TableRow.LayoutParams(0,
-                    TableRow.LayoutParams.WRAP_CONTENT, 1));
-
-            List<String> categories = new ArrayList<>();
-            categories.add(0, "..Select..");
-            categories.add("Resolved");
-            categories.add("Pending");
-
-            //Style and populate the spinner
-            ArrayAdapter<String> dataAdapter;
-            dataAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, categories);
-
-            //Dropdown layout style
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            //attaching data adapter to spinner
-            spinner.setAdapter(dataAdapter);
-
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                    if (parent.getItemAtPosition(position).equals("..Select..")) {
-                        //do nothing
-                    } else {
-                        //on selecting a spinner item
-                        String item = parent.getItemAtPosition(position).toString();
-
-                        //show selected spinner item
-                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-
-                        //anything else you want to do on item selection do here
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                    // TODO Auto-generated method stub
-                }
-            });
-            tbrow.addView(spinner);
-
-
             Button btn = new Button(getActivity());
             btn.setText("UPDATE");
             btn.setId(i);
@@ -377,8 +329,15 @@ public class ItemTwoFragment2 extends Fragment {
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
                     String TempCNO= cno;
-                    String TempStatus = spinner.getSelectedItem().toString();
-                    InsertData(TempCNO,TempStatus);
+                    Intent intent = new Intent(getActivity(), NinthActivity.class);
+                    Bundle bundle = new Bundle();
+//Add your data to bundle
+                    bundle.putString("stuff",TempCNO);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+
+                    //InsertData(TempCNO,TempStatus);
                 }
             });
             tbrow.addView(btn);

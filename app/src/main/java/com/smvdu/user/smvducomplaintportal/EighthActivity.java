@@ -135,9 +135,21 @@ public class EighthActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
 
+            case R.id.menuInventory:
+                Toast.makeText(this, "Navigating..", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EighthActivity.this, TenthActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.menuAbout:
+                Toast.makeText(this, "Requesting..", Toast.LENGTH_SHORT).show();
+                intent = new Intent(EighthActivity.this, EighthActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.menuLogout:
                 Toast.makeText(this, "Logging out..", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EighthActivity.this, MainActivity.class);
+                intent = new Intent(EighthActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
 

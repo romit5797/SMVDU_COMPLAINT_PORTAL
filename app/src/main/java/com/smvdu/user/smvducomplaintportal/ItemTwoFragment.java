@@ -71,11 +71,7 @@ public class ItemTwoFragment extends Fragment {
         categories.add("Electricity");
         categories.add("Internet");
         categories.add("Other");
-        categories.add("Eraser");
-        categories.add("Bag");
-        categories.add("Pen");
-        categories.add("Pencil");
-        categories.add("Eraser");
+
 
         //Style and populate the spinner
         ArrayAdapter<String> dataAdapter;
@@ -116,10 +112,13 @@ public class ItemTwoFragment extends Fragment {
 
         List<String> Hostel = new ArrayList<>();
         Hostel.add(0, "Choose Hostel");
-        Hostel.add("Niligiri");
-        Hostel.add("Internet");
-        Hostel.add("Pencil");
-        Hostel.add("Eraser");
+        Hostel.add("Nilgiri Hostel");
+        Hostel.add("Vindyanchal Hostel");
+        Hostel.add("Basholi Hostel");
+        Hostel.add("Shivalik Hostel");
+        Hostel.add("Vaishnavi Hostel");
+        Hostel.add("Trikuta Hostel");
+        Hostel.add("Kailash Hostel");
 
 
         //Style and populate the spinner
@@ -165,8 +164,14 @@ public class ItemTwoFragment extends Fragment {
                 //make your toast here
 
                 GetData();
+                if(TempName.length() == 0|| TempContact.length() == 0 || TempRoom.length() == 0||TempDetails.length() == 0||TempCategory=="Choose Category" || TempHostel=="Choose Hostel" )
+                {
+                    Toast.makeText(getActivity(), "Error: Enter all the details", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    InsertData(TempName, TempContact, TempRoom, TempBlock, TempHostel, TempCategory,TempEmail,TempDetails);
+                }
 
-                InsertData(TempName, TempContact, TempRoom, TempBlock, TempHostel, TempCategory,TempEmail,TempDetails);
             }
 
 

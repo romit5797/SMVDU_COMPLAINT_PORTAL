@@ -1,34 +1,16 @@
 package com.smvdu.user.smvducomplaintportal;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,53 +33,26 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class ItemThreeFragment extends Fragment {
+public class TenthActivity extends AppCompatActivity {
 
-    String strtext;
-    //int length;
     TableLayout stk;
     ScrollView scrollView;
 
-    //String heroes5[] = new String[100];
-    //String heroes4[] = new String[100];
-    //String heroes3[] = new String[100];
-    //  String heroes2[] = new String[100];
-    //  String heroes[]= new String[100];
-    // String[] count= {"1","2","3","4","5"};
-
-
-    public static ItemThreeFragment newInstance() {
-        ItemThreeFragment fragment = new ItemThreeFragment();
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tenth);
+
+        stk = (TableLayout) findViewById(R.id.table);
+        scrollView = (ScrollView) findViewById(R.id.scrollView1);
+
+
+        getJSON("http://learningphp1234.000webhostapp.com/android/retrieve4.php");
+
 
     }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_item_three, container, false);
-        Bundle b3 = getArguments();
-        strtext = b3.getString("SearchValue");
-
-        stk = (TableLayout) view.findViewById(R.id.table);
-        scrollView = (ScrollView) view.findViewById(R.id.scrollView1);
-
-
-        getJSON("http://learningphp1234.000webhostapp.com/android/retrieve.php?email="+strtext);
-
-        return view;
-    }
-
-
 
 
     private void getJSON(final String urlWebService) {
@@ -151,6 +106,8 @@ public class ItemThreeFragment extends Fragment {
         String[] heroes3 = new String[jsonArray.length()];
         String[] heroes4 = new String[jsonArray.length()];
         String[] heroes5 = new String[jsonArray.length()];
+        String[] heroes6 = new String[jsonArray.length()];
+        String[] heroes7 = new String[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
             heroes[i] = obj.getString("id");
@@ -177,16 +134,29 @@ public class ItemThreeFragment extends Fragment {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            heroes5[i] = obj.getString("name");
+            heroes5[i] = obj.getString("aid");
 
         }
 
-        init(length,heroes,heroes2,heroes3,heroes4,heroes5);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            heroes6[i] = obj.getString("bid");
+
+        }
+
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            heroes7[i] = obj.getString("name");
+
+        }
+
+        init(length,heroes,heroes2,heroes3,heroes4,heroes5,heroes6,heroes7);
     }
 
-    public void init(int length,String[] heroes,final String[] heroes2,String[] heroes3,String[] heroes4,String[] heroes5) {
+    public void init(int length,String[] heroes,final String[] heroes2,String[] heroes3,String[] heroes4,String[] heroes5,String[] heroes6,String[] heroes7) {
 
-        TableRow tbrow0 = new TableRow(getActivity());
+        TableRow tbrow0 = new TableRow(this);
 
         TableLayout.LayoutParams tableRowParams= new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
         int leftMargin=10;
@@ -197,69 +167,79 @@ public class ItemThreeFragment extends Fragment {
         tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
         tbrow0.setLayoutParams(tableRowParams);
 
-        TextView tv0 = new TextView(getActivity());
+        TextView tv0 = new TextView(this);
         tv0.setText(" S.No ");
         tv0.setTextColor(Color.WHITE);
         tbrow0.addView(tv0);
-        TextView tv1 = new TextView(getActivity());
-        tv1.setText(" Category ");
+        TextView tv1 = new TextView(this);
+        tv1.setText(" Name ");
         tv1.setTextColor(Color.WHITE);
         tbrow0.addView(tv1);
-        TextView tv2 = new TextView(getActivity());
-        tv2.setText(" Complaint No. ");
+        TextView tv2 = new TextView(this);
+        tv2.setText(" Category ");
         tv2.setTextColor(Color.WHITE);
         tv2.setGravity(Gravity.CENTER);
         tbrow0.addView(tv2);
-        TextView tv3 = new TextView(getActivity());
-        tv3.setText(" Complaint ");
+        TextView tv3 = new TextView(this);
+        tv3.setText(" T_units ");
         tv3.setTextColor(Color.WHITE);
         tbrow0.addView(tv3);
-        TextView tv4 = new TextView(getActivity());
-        tv4.setText(" Current Status ");
+        TextView tv4 = new TextView(this);
+        tv4.setText(" M_unit ");
         tv4.setTextColor(Color.WHITE);
         tv4.setGravity(Gravity.CENTER);
         tbrow0.addView(tv4);
-        TextView tv5 = new TextView(getActivity());
-        tv5.setText(" Time ");
+        TextView tv5 = new TextView(this);
+        tv5.setText(" Issued ");
         tv5.setTextColor(Color.WHITE);
         tv5.setGravity(Gravity.CENTER);
         tbrow0.addView(tv5);
+        TextView tv6 = new TextView(this);
+        tv6.setText(" Balance ");
+        tv6.setTextColor(Color.WHITE);
+        tv6.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv6);
+        TextView tv7 = new TextView(this);
+        tv7.setText(" Time ");
+        tv7.setTextColor(Color.WHITE);
+        tv7.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv7);
 
         stk.addView(tbrow0);
 
         for (int i = 0; i <length; i++) {
             final String cno = heroes2[i];
-            TableRow tbrow = new TableRow(getActivity());
+            TableRow tbrow = new TableRow(this);
             tbrow.setLayoutParams(tableRowParams);
-            TextView t1v = new TextView(getActivity());
+            TextView t1v = new TextView(this);
             t1v.setText(Integer.toString(i+1));
             t1v.setTextColor(Color.WHITE);
             t1v.setGravity(Gravity.CENTER);
             t1v.setMaxWidth(10);
             tbrow.addView(t1v);
 
-            TextView t2v = new TextView(getActivity());
+            TextView t2v = new TextView(this);
             t2v.setText(heroes[i]);
             t2v.setTextColor(Color.WHITE);
             t2v.setGravity(Gravity.CENTER);
             t2v.setMaxWidth(10);
             tbrow.addView(t2v);
 
-            TextView t3v = new TextView(getActivity());
+            TextView t3v = new TextView(this);
             t3v.setText(heroes2[i]);
             t3v.setTextColor(Color.WHITE);
             t3v.setGravity(Gravity.CENTER);
             t3v.setMaxWidth(10);
             tbrow.addView(t3v);
 
-            TextView t4v = new TextView(getActivity());
+            TextView t4v = new TextView(this);
             t4v.setText(heroes3[i]);
             t4v.setTextColor(Color.WHITE);
             t4v.setGravity(Gravity.CENTER);
             t4v.setMaxWidth(10);
             tbrow.addView(t4v);
 
-            TextView t5v = new TextView(getActivity());
+            TextView t5v = new TextView(this);
             t5v.setText(heroes4[i]);
             t5v.setTextColor(Color.WHITE);
             t5v.setGravity(Gravity.CENTER);
@@ -267,48 +247,66 @@ public class ItemThreeFragment extends Fragment {
             tbrow.addView(t5v);
 
 
-            TextView t6v = new TextView(getActivity());
+            TextView t6v = new TextView(this);
             t6v.setText(heroes5[i]);
             t6v.setTextColor(Color.WHITE);
             t6v.setGravity(Gravity.CENTER);
             t6v.setMaxWidth(10);
             tbrow.addView(t6v);
+
+            TextView t7v = new TextView(this);
+            t7v.setText(heroes6[i]);
+            t7v.setTextColor(Color.WHITE);
+            t7v.setGravity(Gravity.CENTER);
+            t7v.setMaxWidth(10);
+            tbrow.addView(t7v);
+
+            TextView t8v = new TextView(this);
+            t8v.setText(heroes7[i]);
+            t8v.setTextColor(Color.WHITE);
+            t8v.setGravity(Gravity.CENTER);
+            t8v.setMaxWidth(10);
+            tbrow.addView(t8v);
+
+
             stk.addView(tbrow);
 
 
         }
+
         for (int i = 0; i <15; i++) {
-            TableRow tbrow = new TableRow(getActivity());
+            final String cno = heroes2[i];
+            TableRow tbrow = new TableRow(this);
             tbrow.setLayoutParams(tableRowParams);
-            TextView t1v = new TextView(getActivity());
+            TextView t1v = new TextView(this);
             t1v.setText(" ");
             t1v.setTextColor(Color.WHITE);
             t1v.setGravity(Gravity.CENTER);
             t1v.setMaxWidth(10);
             tbrow.addView(t1v);
 
-            TextView t2v = new TextView(getActivity());
+            TextView t2v = new TextView(this);
             t2v.setText(" ");
             t2v.setTextColor(Color.WHITE);
             t2v.setGravity(Gravity.CENTER);
             t2v.setMaxWidth(10);
             tbrow.addView(t2v);
 
-            TextView t3v = new TextView(getActivity());
+            TextView t3v = new TextView(this);
             t3v.setText(" ");
             t3v.setTextColor(Color.WHITE);
             t3v.setGravity(Gravity.CENTER);
             t3v.setMaxWidth(10);
             tbrow.addView(t3v);
 
-            TextView t4v = new TextView(getActivity());
+            TextView t4v = new TextView(this);
             t4v.setText(" ");
             t4v.setTextColor(Color.WHITE);
             t4v.setGravity(Gravity.CENTER);
             t4v.setMaxWidth(10);
             tbrow.addView(t4v);
 
-            TextView t5v = new TextView(getActivity());
+            TextView t5v = new TextView(this);
             t5v.setText(" ");
             t5v.setTextColor(Color.WHITE);
             t5v.setGravity(Gravity.CENTER);
@@ -316,29 +314,18 @@ public class ItemThreeFragment extends Fragment {
             tbrow.addView(t5v);
 
 
-            TextView t6v = new TextView(getActivity());
+            TextView t6v = new TextView(this);
             t6v.setText(" ");
             t6v.setTextColor(Color.WHITE);
             t6v.setGravity(Gravity.CENTER);
             t6v.setMaxWidth(10);
             tbrow.addView(t6v);
             stk.addView(tbrow);
-
         }
 
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-    }
 
 
 }

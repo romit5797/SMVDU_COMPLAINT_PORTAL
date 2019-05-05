@@ -86,9 +86,16 @@ String text;
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+
+            case R.id.menuInventory:
+                Toast.makeText(this, "Navigating..", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SeventhActivity.this, TenthActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.menuAbout:
                 Toast.makeText(this, "Requesting..", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SeventhActivity.this, EighthActivity.class);
+                intent = new Intent(SeventhActivity.this, EighthActivity.class);
                 startActivity(intent);
                 break;
 

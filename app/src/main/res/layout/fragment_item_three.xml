@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ItemThreeFragment">
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -44,54 +43,14 @@
             android:text="COMPLAINT PORTAL"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
+
     </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="#800000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11">
-
-        <HorizontalScrollView
-            android:id="@+id/hscrll1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:id="@+id/RelativeLayout1"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <TableLayout
-                    android:id="@+id/table"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="left"
-                    android:gravity="right"
-                    android:minWidth="25dp"></TableLayout>
-
-            </RelativeLayout>
-        </HorizontalScrollView>
-    </ScrollView>
-
     <TextView
         android:id="@+id/textView11"
+        android:layout_below="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:text="*Your Complaint History :"
+        android:text="*Your complaint history :"
         android:textColor="#800000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,4 +59,41 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 
-</android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:layout_below="@+id/textView11"
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#800000">
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+            <TableLayout
+                android:id="@+id/table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="left"
+                android:gravity="right"
+                android:minWidth="25dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:stretchColumns="*"></TableLayout>
+
+
+        </HorizontalScrollView>
+    </ScrollView>
+
+</RelativeLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemThreeFragment2">
+    tools:context=".TenthActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -45,18 +45,18 @@
             android:textSize="18sp" />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:text="*All complaints :"
-        android:textColor="#800000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="*Inventory :"
+            android:textColor="#800000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 
 

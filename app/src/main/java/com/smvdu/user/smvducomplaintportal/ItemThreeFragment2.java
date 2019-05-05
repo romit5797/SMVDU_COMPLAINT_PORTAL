@@ -1,5 +1,6 @@
 package com.smvdu.user.smvducomplaintportal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -141,6 +142,7 @@ public class ItemThreeFragment2 extends Fragment {
         String[] heroes3 = new String[jsonArray.length()];
         String[] heroes4 = new String[jsonArray.length()];
         String[] heroes5 = new String[jsonArray.length()];
+        String[] heroes6 = new String[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
             heroes[i] = obj.getString("id");
@@ -167,32 +169,39 @@ public class ItemThreeFragment2 extends Fragment {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            heroes5[i] = obj.getString("name");
+            heroes5[i] = obj.getString("aid");
 
         }
 
-        init(length,heroes,heroes2,heroes3,heroes4,heroes5);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            heroes6[i] = obj.getString("name");
+
+        }
+
+        init(length,heroes,heroes2,heroes3,heroes4,heroes5,heroes6);
     }
 
-    public void init(int length,String[] heroes,final String[] heroes2,String[] heroes3,String[] heroes4,String[] heroes5) {
+    public void init(int length,String[] heroes,final String[] heroes2,String[] heroes3,String[] heroes4,String[] heroes5,String[] heroes6) {
+
 
         TableRow tbrow0 = new TableRow(getActivity());
 
         TableLayout.LayoutParams tableRowParams= new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
-        int leftMargin=10;
+        int leftMargin=30;
         int topMargin=2;
-        int rightMargin=10;
+        int rightMargin=2;
         int bottomMargin=2;
 
         tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
         tbrow0.setLayoutParams(tableRowParams);
 
         TextView tv0 = new TextView(getActivity());
-        tv0.setText(" ********Serial_Number********** ");
+        tv0.setText(" S.No ");
         tv0.setTextColor(Color.WHITE);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(getActivity());
-        tv1.setText("Category ");
+        tv1.setText(" Category ");
         tv1.setTextColor(Color.WHITE);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(getActivity());
@@ -215,7 +224,7 @@ public class ItemThreeFragment2 extends Fragment {
         tv5.setGravity(Gravity.CENTER);
         tbrow0.addView(tv5);
         TextView tv6 = new TextView(getActivity());
-        tv6.setText(" Change Status ");
+        tv6.setText(" Remarks ");
         tv6.setTextColor(Color.WHITE);
         tv6.setGravity(Gravity.CENTER);
         tbrow0.addView(tv6);
@@ -234,7 +243,7 @@ public class ItemThreeFragment2 extends Fragment {
             TextView t1v = new TextView(getActivity());
             t1v.setText(Integer.toString(i+1));
             t1v.setTextColor(Color.WHITE);
-            t1v.setGravity(Gravity.RIGHT);
+            t1v.setGravity(Gravity.CENTER);
             t1v.setMaxWidth(10);
             tbrow.addView(t1v);
 
@@ -274,51 +283,13 @@ public class ItemThreeFragment2 extends Fragment {
             t6v.setMaxWidth(10);
             tbrow.addView(t6v);
 
-            final Spinner spinner = new Spinner(getActivity());
-            spinner.setLayoutParams(new LayoutParams(0,
-                    LayoutParams.WRAP_CONTENT, 1));
 
-            List<String> categories = new ArrayList<>();
-            categories.add(0, "..Select..");
-            categories.add("Resolved");
-            categories.add("Pending");
-
-            //Style and populate the spinner
-            ArrayAdapter<String> dataAdapter;
-            dataAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, categories);
-
-            //Dropdown layout style
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            //attaching data adapter to spinner
-            spinner.setAdapter(dataAdapter);
-
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                    if (parent.getItemAtPosition(position).equals("..Select..")) {
-                        //do nothing
-                    } else {
-                        //on selecting a spinner item
-                        String item = parent.getItemAtPosition(position).toString();
-
-                        //show selected spinner item
-                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-
-                        //anything else you want to do on item selection do here
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                    // TODO Auto-generated method stub
-                }
-            });
-            tbrow.addView(spinner);
-
-
+            TextView t7v = new TextView(getActivity());
+            t7v.setText(heroes6[i]);
+            t7v.setTextColor(Color.WHITE);
+            t7v.setGravity(Gravity.CENTER);
+            t7v.setMaxWidth(10);
+            tbrow.addView(t7v);
             Button btn = new Button(getActivity());
             btn.setText("UPDATE");
             btn.setId(i);
@@ -327,12 +298,22 @@ public class ItemThreeFragment2 extends Fragment {
                 @Override
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
-                   String TempCNO= cno;
-                    String TempStatus = spinner.getSelectedItem().toString();
-                    InsertData(TempCNO,TempStatus);
+                    String TempCNO= cno;
+                    Intent intent = new Intent(getActivity(), NinthActivity.class);
+                    Bundle bundle = new Bundle();
+//Add your data to bundle
+                    bundle.putString("stuff",TempCNO);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+
+                    //InsertData(TempCNO,TempStatus);
                 }
             });
             tbrow.addView(btn);
+
+
+
 
 
             stk.addView(tbrow);
@@ -340,7 +321,57 @@ public class ItemThreeFragment2 extends Fragment {
 
         }
 
-    }
+        for (int i = 0; i <15; i++) {
+            final String cno = heroes2[i];
+            TableRow tbrow = new TableRow(getActivity());
+            tbrow.setLayoutParams(tableRowParams);
+            TextView t1v = new TextView(getActivity());
+            t1v.setText(" ");
+            t1v.setTextColor(Color.WHITE);
+            t1v.setGravity(Gravity.CENTER);
+            t1v.setMaxWidth(10);
+            tbrow.addView(t1v);
+
+            TextView t2v = new TextView(getActivity());
+            t2v.setText(" ");
+            t2v.setTextColor(Color.WHITE);
+            t2v.setGravity(Gravity.CENTER);
+            t2v.setMaxWidth(10);
+            tbrow.addView(t2v);
+
+            TextView t3v = new TextView(getActivity());
+            t3v.setText(" ");
+            t3v.setTextColor(Color.WHITE);
+            t3v.setGravity(Gravity.CENTER);
+            t3v.setMaxWidth(10);
+            tbrow.addView(t3v);
+
+            TextView t4v = new TextView(getActivity());
+            t4v.setText(" ");
+            t4v.setTextColor(Color.WHITE);
+            t4v.setGravity(Gravity.CENTER);
+            t4v.setMaxWidth(10);
+            tbrow.addView(t4v);
+
+            TextView t5v = new TextView(getActivity());
+            t5v.setText(" ");
+            t5v.setTextColor(Color.WHITE);
+            t5v.setGravity(Gravity.CENTER);
+            t5v.setMaxWidth(10);
+            tbrow.addView(t5v);
+
+
+            TextView t6v = new TextView(getActivity());
+            t6v.setText(" ");
+            t6v.setTextColor(Color.WHITE);
+            t6v.setGravity(Gravity.CENTER);
+            t6v.setMaxWidth(10);
+            tbrow.addView(t6v);
+            stk.addView(tbrow);
+        }
+
+
+        }
     public void InsertData(final String c_no,final String status){
 
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
