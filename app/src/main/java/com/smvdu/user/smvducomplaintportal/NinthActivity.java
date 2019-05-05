@@ -225,7 +225,8 @@ public class NinthActivity extends AppCompatActivity {
               net=Integer.toString(net2);
                 String name = spinner2.getSelectedItem().toString();
                if(balance[position]>Integer.parseInt(consumed))
-               {InsertData3(net,consumed,name);}
+               {  Submit4.setVisibility(View.INVISIBLE);
+                   InsertData3(net,consumed,name);}
                else{
                    Toast.makeText(NinthActivity.this, "Not enough resources available", Toast.LENGTH_LONG).show();
                }
@@ -434,7 +435,7 @@ public class NinthActivity extends AppCompatActivity {
 
                 super.onPostExecute(result);
 
-                Toast.makeText(NinthActivity.this, "Status updated!", Toast.LENGTH_LONG).show();
+                Toast.makeText(NinthActivity.this, "Remarks Added!", Toast.LENGTH_LONG).show();
 
             }
         }
@@ -485,7 +486,7 @@ public class NinthActivity extends AppCompatActivity {
 
                 super.onPostExecute(result);
 
-                Toast.makeText(NinthActivity.this, "Status updated!", Toast.LENGTH_LONG).show();
+                Toast.makeText(NinthActivity.this, "Inventory updated!", Toast.LENGTH_LONG).show();
 
             }
         }

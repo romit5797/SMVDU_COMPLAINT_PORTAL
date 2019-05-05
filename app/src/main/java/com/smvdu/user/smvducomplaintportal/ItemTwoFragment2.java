@@ -388,7 +388,7 @@ public class ItemTwoFragment2 extends Fragment {
 
                 super.onPostExecute(result);
 
-                Toast.makeText(getActivity(), "Status updated!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Searching..!", Toast.LENGTH_LONG).show();
 
             }
         }
