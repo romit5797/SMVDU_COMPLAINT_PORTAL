@@ -22,53 +22,54 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FourthActivity extends AppCompatActivity {
-    String ServerURL = "http://learningphp1234.000webhostapp.com/android/mail.php" ;
-    private EditText userEmail;
-    private Button Submit;
-
-    String TempEmail;
+public class TwelfthActivity extends AppCompatActivity {
+    String ServerURL3 = "http://learningphp1234.000webhostapp.com/android/changepass2.php";
+    private Button Submit3;
+    EditText tpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fourth);
+        setContentView(R.layout.activity_twelfth);
+        tpassword = (EditText) findViewById(R.id.etPassword);
 
-        userEmail = (EditText) findViewById(R.id.etEmail);
-        Submit = (Button) findViewById(R.id.btnSubmit);
 
-        Submit.setOnClickListener(new View.OnClickListener() {
+        Submit3 = (Button) findViewById(R.id.btnSubmit3);
+        Submit3.setVisibility(View.VISIBLE);
+
+
+        Submit3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //make your toast here
+                Bundle bundle = getIntent().getExtras();
+                String text= bundle.getString("stuff");
+                String tempass=tpassword.getText().toString();
+                InsertData3(text,tempass);
 
-                TempEmail= userEmail.getText().toString();
 
-                InsertData(TempEmail);
             }
-
-
         });
+
+
     }
-    public void InsertData(final String email){
+    public void InsertData3(final String email, final String password) {
 
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
 
-
                 String EmailHolder = email;
+                String PasswordHolder = password;
 
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
-
                 nameValuePairs.add(new BasicNameValuePair("email", EmailHolder));
-
+                nameValuePairs.add(new BasicNameValuePair("password", PasswordHolder));
                 try {
                     HttpClient httpClient = new DefaultHttpClient();
 
-                    HttpPost httpPost = new HttpPost(ServerURL);
+                    HttpPost httpPost = new HttpPost(ServerURL3);
 
                     httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -90,13 +91,14 @@ public class FourthActivity extends AppCompatActivity {
 
                 super.onPostExecute(result);
 
-                Toast.makeText(FourthActivity.this, "Password sent to your email", Toast.LENGTH_LONG).show();
+                Toast.makeText(TwelfthActivity.this, "PASSWORD updated!", Toast.LENGTH_LONG).show();
 
             }
         }
 
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
 
-        sendPostReqAsyncTask.execute(email);
+        sendPostReqAsyncTask.execute(email, password);
     }
 }
+

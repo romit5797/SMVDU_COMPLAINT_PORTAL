@@ -58,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void OnNew(View view) {
+
+        Intent intent = new Intent(MainActivity.this, EleventhActivity.class);
+        startActivity(intent);
+
+    }
+
 
 
 }

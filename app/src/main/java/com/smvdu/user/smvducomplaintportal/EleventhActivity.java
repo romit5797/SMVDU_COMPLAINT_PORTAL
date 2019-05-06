@@ -1,11 +1,21 @@
 package com.smvdu.user.smvducomplaintportal;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -17,40 +27,73 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FourthActivity extends AppCompatActivity {
-    String ServerURL = "http://learningphp1234.000webhostapp.com/android/mail.php" ;
-    private EditText userEmail;
-    private Button Submit;
+public class EleventhActivity extends AppCompatActivity {
+    String ServerURL = "http://learningphp1234.000webhostapp.com/android/otp.php";
+    private Button Submit, Submit2;
+    EditText temail, totp;
+    TextView tx;
 
-    String TempEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fourth);
+        setContentView(R.layout.activity_eleventh);
 
-        userEmail = (EditText) findViewById(R.id.etEmail);
+
+        temail = (EditText) findViewById(R.id.etEmail);
+        totp = (EditText) findViewById(R.id.etOtp);
+        tx= findViewById(R.id.txt);
         Submit = (Button) findViewById(R.id.btnSubmit);
+        Submit2 = (Button) findViewById(R.id.btnSubmit2);
 
+
+
+        tx.setVisibility(View.INVISIBLE);
+        totp.setVisibility(View.INVISIBLE);
+        Submit2.setVisibility(View.INVISIBLE);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //make your toast here
-
-                TempEmail= userEmail.getText().toString();
-
-                InsertData(TempEmail);
+                String tempemail = temail.getText().toString();
+                InsertData(tempemail);
+                Submit.setVisibility(View.INVISIBLE);
+                tx.setVisibility(View.VISIBLE);
+                totp.setVisibility(View.VISIBLE);
+                Submit2.setVisibility(View.VISIBLE);
             }
-
-
         });
+
+
+
+        Submit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String tempemail = temail.getText().toString();
+                String tempotp = totp.getText().toString();
+                String type = "login";
+
+                BackgroundWorker3 backgroundWorker3 = new BackgroundWorker3(EleventhActivity.this);
+                backgroundWorker3.execute(type, tempemail, tempotp);
+
+            }
+        });
+
+
     }
-    public void InsertData(final String email){
+
+    public void InsertData(final String email) {
 
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
@@ -90,7 +133,7 @@ public class FourthActivity extends AppCompatActivity {
 
                 super.onPostExecute(result);
 
-                Toast.makeText(FourthActivity.this, "Password sent to your email", Toast.LENGTH_LONG).show();
+                Toast.makeText(EleventhActivity.this, "OTP sent to your email", Toast.LENGTH_LONG).show();
 
             }
         }
@@ -99,4 +142,5 @@ public class FourthActivity extends AppCompatActivity {
 
         sendPostReqAsyncTask.execute(email);
     }
+
 }
